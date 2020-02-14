@@ -61,7 +61,7 @@ namespace ComicClub.Controllers
 
             var collection = database.GetCollection<Comment>("comment");
 
-            var query = Query.EQ("idCommicComm", new ObjectId(comicId));
+            var query = Query.EQ("idComicComm",comicId);
 
             MongoCursor<Comment> komentari = collection.Find(query);
 

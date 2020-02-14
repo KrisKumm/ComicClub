@@ -1,0 +1,10 @@
+<ion-content>
+    <ion-card class="modal-card">
+        <ion-card-content>
+            <ion-item *ngIf="this.BackImg !== '' " class="ion-align-items-center">
+                <ion-img [src]="this.BackImg" ></ion-img>
+            </ion-item>
+            <ion-card-title class="ion-margin" >{{this.answer}}</ion-card-title>
+        </ion-card-content>
+    </ion-card>
+</ion-content>

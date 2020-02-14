@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+          <ion-back-button (click)="searchOff()" defaultHref="/home"></ion-back-button>
+      </ion-buttons>
+      <ion-title>Home</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-searchbar class="ion-padding" [(ngModel)]="this.searchText" (keydown)="search($event)" placeholder="Search other specific comic" showCancelButton="true"></ion-searchbar>
+  <ion-list>
+    <!-- <ion-list-header>{{this.searchText}}</ion-list-header> -->
+    <ion-item *ngFor="let col of colection">
+      <!-- <ion-reorder slot="start"></ion-reorder> -->
+      <ion-label (click)="setComic(col)" [routerLink]="['/home', col.Id]">{{col.name}}</ion-label>
+        <ion-chip  slot="end" (click)="likeCol(col)">
+            <ion-icon [name]="col.liked === undefined ? 'heart-empty' : col.liked" color="danger"></ion-icon>
+            <ion-label class="ion-float-right">{{ col.numberLikes }}</ion-label>
+        </ion-chip>
+      <!-- <ion-badge color="tertiary" slot="end">44%</ion-badge> -->
+    </ion-item>
+  </ion-list>
+  <!-- <app-home></app-home> -->
+  
+</ion-content>

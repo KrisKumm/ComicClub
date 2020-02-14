@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-back-button defaultHref="/home"></ion-back-button>
+        </ion-buttons>
+    <ion-title>ADD A COLECTION</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-content>
+      <ion-item>
+        <ion-label position="floating"  [color]="errName">Colection name</ion-label>
+        <ion-input type="text" autofocus="true" maxlength="25" (focusout)="nameCheck()" [(ngModel)]="name"></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label>Private/Public</ion-label>
+          <ion-toggle [(ngModel)]="visable"></ion-toggle>
+      </ion-item>
+      <ion-button [disabled]="isDisabled" color="primary" (click) ="addColection()" class="ion-margin">
+          <ion-icon slot="start" name="add-circle-outline"></ion-icon>Add
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

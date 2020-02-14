@@ -1,0 +1,36 @@
+<ion-content (ionModalDidDismiss)=close()>
+  <ion-card>
+    <ion-card-content>
+      <ion-card-header>
+        Question
+      </ion-card-header>
+      <ion-input type="text" (change)="setQuestion($event)"></ion-input>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+      <ion-card-content>
+        <ion-card-header>
+          Answer
+        </ion-card-header>
+        <ion-input type="text" (change)="setAnswer($event)"></ion-input>
+      </ion-card-content>
+    </ion-card>
+    <ion-card>
+        <ion-card-content>
+          <ion-card-header>
+              Question Img URL (optional)
+          </ion-card-header>
+          <ion-input type="text" (change)="setQueImg($event)"></ion-input>
+        </ion-card-content>
+      </ion-card>
+      <ion-card>
+          <ion-card-content>
+            <ion-card-header>
+              Answer Img URL (optional)
+            </ion-card-header>
+            <ion-input type="text" (change)="setAnsImg($event)"></ion-input>
+          </ion-card-content>
+        </ion-card>
+    <ion-button color="primary" (click)="close($event)"> Change</ion-button>
+    <ion-button color="danger" (click)="cancle()"> Cancle</ion-button>
+</ion-content>

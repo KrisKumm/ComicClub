@@ -1,0 +1,44 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/login"></ion-back-button>
+          </ion-buttons>
+      <ion-title class="ion-text-center">Register</ion-title>
+      <ion-button slot="end" (click)="presentPopover()">
+        <ion-icon name="wifi"></ion-icon>
+      </ion-button>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+    <ion-grid>
+      <ion-row>
+        <ion-col offsetMd="3" sizeMd="6" >      
+      <ion-card class="ion-margin">
+          <ion-card-content>
+            <ion-item>
+              <ion-label position="floating" [color]="errUser">User name</ion-label>
+              <ion-input type="text" autofocus="true" maxlength="15" (focusout)="userCheck()" [(ngModel)]="userName"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating"  [color]="errIndex">Picture</ion-label>
+                <ion-input type="file"maxlength="10" (focusout)="indexCheck()" [(ngModel)]="userIndex"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label position="floating"  [color]="errPass">Password</ion-label>
+                <ion-input type="password" maxlength="15" [(ngModel)]="userPassword"></ion-input>
+              </ion-item>
+              <ion-item>
+                  <ion-label position="floating" [color]="errPass">Repeat password</ion-label>
+                  <ion-input type="password" maxlength="15" (focusout)="passCheck()" [(ngModel)]="userRPassword"></ion-input>
+                </ion-item>         
+            <ion-button  color="primary" (click) ="register()"  class="ion-margin" [disabled]="this.isDisabled !== false">
+                <ion-icon slot="start" name="add-circle-outline"></ion-icon>Register
+            </ion-button>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      </ion-row>
+      </ion-grid>
+  </ion-content>
+  

@@ -86,7 +86,8 @@ namespace ComicClub.Controllers
                 Query.EQ("nickname", nicknameUser),
                 Query.EQ("password", passwordUser)
                 );
-            user = collection.Find(query).First();
+            if (collection.Find(query).Count() != 0)
+                user = collection.Find(query).First();
             return Ok(user);
         }
 
@@ -107,7 +108,8 @@ namespace ComicClub.Controllers
         }
 
         [HttpPut]
-        public IHttpActionResult PutComicInUserList(string userId, string comicName)
+        [Route("PutComicInUserList/{userId}/{comicId}")]
+        public IHttpActionResult PutComicInUserList(string userId, string comicId)
         {
             MongoClient client = new MongoClient("mongodb://localhost/?safe=true");
             MongoServer server = client.GetServer();
@@ -116,7 +118,24 @@ namespace ComicClub.Controllers
             var collection = database.GetCollection<User>("user");
 
             var query = Query.EQ("_id", new ObjectId(userId));
-            var update = Update.PushWrapped("comicIdList", comicName);
+            var update = Update.PushWrapped("comicIdList", new ObjectId(comicId));
+
+            collection.Update(query, update);
+
+            return Ok();
+        }
+        [HttpPut]
+        [Route("PullComicInUserList/{userId}/{comicId}")]
+        public IHttpActionResult PullComicInUserList(string userId, string comicId)
+        {
+            MongoClient client = new MongoClient("mongodb://localhost/?safe=true");
+            MongoServer server = client.GetServer();
+            var database = server.GetDatabase("comicclub");
+
+            var collection = database.GetCollection<User>("user");
+
+            var query = Query.EQ("_id", new ObjectId(userId));
+            var update = Update.PullWrapped("comicIdList", new ObjectId(comicId));
 
             collection.Update(query, update);
 

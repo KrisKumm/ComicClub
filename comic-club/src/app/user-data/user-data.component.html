@@ -1,0 +1,20 @@
+<ion-content>
+  <ion-card>
+    <ion-list>
+        <ion-label position="floating">Change URL</ion-label>
+      <ion-item>
+        <ion-input clearInput type="text" autofocus="true" maxlength="300" (change)="newUrl($event)" [value]="urlPlace | async"></ion-input>
+      </ion-item>
+      <ion-label position="floating">Change User name</ion-label>
+      <ion-item>
+          <ion-input type="text"  maxlength="30" (change)="newName($event)" [value]="namePlace | async"></ion-input>
+        </ion-item>
+        <ion-label position="floating">Change Password</ion-label>
+        <ion-item>
+            <ion-input type="password"  maxlength="30" (change)="newPassword($event)" [value]="pass"></ion-input>
+          </ion-item>
+    </ion-list>
+    <ion-button (click)="change()" color="primary">Change</ion-button>
+    <ion-button (click)="cancle()" color="danger">Cancle</ion-button>
+  </ion-card>
+</ion-content>

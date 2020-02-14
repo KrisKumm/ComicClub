@@ -16,7 +16,7 @@ namespace ComicClub.Models
         public string idUserComm { get; set; }
         public string idComicComm { get; set; }
         public string commentText { get; set; }
-
+        public string userName { get; set; }
         public Comment()
         {
 

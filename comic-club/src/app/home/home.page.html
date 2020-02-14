@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button (click)="retUser()"></ion-back-button>
+    </ion-buttons>
+    <ion-title >Comic Club</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" pullFactor="0.5" pullMin="100" pullMax="200" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-grid>
+    <ion-row>
+      <ion-col offsetMd="3" sizeMd="6">
+        <ion-card>
+          <ion-card-content>
+            <ion-item>
+              <ion-avatar  slot="start" class="img" (click)="makeChange()">
+                <img [src]="this.user.picture" />
+              </ion-avatar>
+              <ion-label class="ion-text-center"><strong>{{this.user.nickname}}</strong></ion-label>
+            </ion-item>
+            <ion-item class="ion-pading">
+              <!-- <ion-item-divider>
+                <ion-label>{{this.userFax | async}}</ion-label>
+              </ion-item-divider> -->
+              <ion-item-divider>
+                <ion-label>Comics: &nbsp; </ion-label>
+                <ion-label>{{ this.colection.length }}</ion-label>
+              </ion-item-divider>
+            </ion-item>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col offsetMd="3" sizeMd="6">
+        <ion-list>
+          <ion-item-sliding *ngFor="let col of colection">
+            <ion-item *ngIf="col.Visable === 1 || this.userService.searching === false">
+              <!-- <ion-reorder slot="start"></ion-reorder> -->
+              <ion-label (click)="setComic(col)" [routerLink]="['/home', col.ColId]">{{col.name}}</ion-label>
+                <ion-chip  slot="end" (click)="likeCol(col)">
+                    <ion-icon name="heart"color="danger"></ion-icon>
+                    <ion-label class="ion-float-right">{{ col.numberLikes }}</ion-label>
+                </ion-chip>
+              <!-- <ion-badge color="tertiary" slot="end">44%</ion-badge> -->
+            </ion-item>
+            <ion-item-options  side="end" >
+              <ion-item-option *ngIf="this.userService.searching === false"  color="danger" (click)="delColection(col.ColId)">Delete</ion-item-option>
+            </ion-item-options>
+            <ion-item-options  side="start">
+              <ion-item-option *ngIf="this.userService.searching === false" color="primary">Edit</ion-item-option>
+            </ion-item-options>
+          </ion-item-sliding>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-fab *ngIf="this.userService.searching === false" vertical="bottom" horizontal="start" slot="fixed">
+    <ion-fab-button [routerLink]="['../search']"  >
+      <!--  -->
+      <ion-icon name="home"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
+
+<!-- <ion-item *ngFor="let col of colections"> {{col.name}}</ion-item> -->
